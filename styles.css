@@ -22,7 +22,7 @@ body {
     padding: 10px 20px;
     justify-content: space-between;
     background: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(10px);
     align-items: center;
     /* color: ; */
 }
@@ -57,26 +57,90 @@ a {
     color: white;
 }
 
-.card {
-    background-color: white;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding-left: 30px;
-    padding: 20px;
-    margin: 10px;
-    width: 200px;
-    height: 300px;
-    display: inline-block;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+.slider {
+    height: 250px;
+    margin: auto;
+    position: relative;
+    width: 90%;
+    display: flex;
+    place-items: center;
+    overflow: hidden;
+
 }
 
+.slide-track {
+    display: flex;
+    width: calc(160px*10);
+    animation: scroll 40s linear infinite;
+
+}
+
+.slide {
+    height: 350px;
+    width: 350px;
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    perspective: 100px;
+
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+img {
+    width: 100%;
+    transition: transform 1s;
+}
+
+.slider::before,
+.slider::after {
+    background: linear-gradient(to right, rgba(255, 255, 255, 0) 100%);
+    content: '';
+    height: 100%;
+    position: absolute;
+    width: 15%;
+    z-index: 2;
+
+}
+
+.slider::before {
+    left: 0;
+    top: 0;
+}
+
+.slider::after {
+    right: 0;
+    top: 0;
+    transform: rotateZ(180deg);
+
+}
+
+.slide-track:hover {
+    animation-play-state: paused;
+}
+
+img:hover {
+    transform: translateZ(20px);
+}
+
+
+
+/* 
 .card h2 {
     margin-top: 0;
 }
 
 .card p {
-    margin-bottom: 0;
-}
+    margin-bottom: 0; */
+/* } */
 
 #buttonForAdding {
     position: absolute;
@@ -87,6 +151,36 @@ a {
     border-radius: 10px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
+
+/* Add CSS styles for the tooltip/popover */
+.book-details {
+    position: absolute;
+    background: linear-gradient(blue, yellow);
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+    max-width: 200px;
+    /* Adjust as needed */
+}
+
+.book-details p {
+    font-style: italic;
+    font-size: large;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin: 5px 0;
+}
+
+/* 
+.card img {
+    width: 200px;
+    /* Set the width of the image */
+/* height: 150px; */
+/* Maintain aspect ratio */
+/* overflow: hidden;
+    border-radius: 8px;
+} */
 
 @media only screen and (max-width:200px) {
     .navbar {
