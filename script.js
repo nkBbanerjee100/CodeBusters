@@ -57,100 +57,27 @@
 //     // console.log("ejkkjedjuhedku");
 // }
 
-// function filterBooks() {
-//     let filteredBooks = [];
-//     const searchInput = document.querySelector('.searchContainer').value.toLowerCase();
-//     if (searchInput === '') {
-//         filteredBooks = cardsData;
-//     } else {
-//         filteredBooks = cardsData.filter((book) => book.title.toLowerCase().includes(searchInput));
-//     }
-//     // renderCard(filteredBooks);
-// }
+function filterBooks() {
+    const searchInput = document.getElementById('searchInput').value.toLowerCase();
+    const slides = document.querySelectorAll('.slide');
 
-// renderCard();
-
-// // document.getElementById('searchContainer').addEventListener('input', filterBooks);
-// Array of image URLs
-/*
-const imageUrls = [
-    "images/images.jpeg",
-    "images/9M-atomic-habits-dots.png",
-    "images/Good-Company-Book-Cover-448342647b744db79b6c31c061eef126.jpg",
-    "images/images (1).jpeg",
-    "images/images (2).jpeg",
-    "images/images (3).jpeg",
-    "images/images (4).jpeg",
-    "images/images (5).jpeg",
-    "images/images (6).jpeg",
-    "images/images (7).jpeg"
-];
-
-// Function to create and append <img> elements for each image
-function createSlider() {
-    const slider = document.getElementById('slider');
-    imageUrls.forEach(url => {
-        const img = document.createElement('img');
-        img.src = url;
-        img.classList.add('slide');
-        slider.appendChild(img);
+    slides.forEach(slide => {
+        const title = slide.getAttribute('data-author').toLowerCase();
+        if (title.includes(searchInput)) {
+            slide.style.display = 'block';
+        } else {
+            slide.style.display = 'none';
+        }
     });
+    const slideTrack = document.querySelector('.slide-track');
+    slideTrack.style.animationPlayState = 'paused';
+    // slideTrack.style.display = block;
+    const slider = document.querySelector('.slider');
+    slider.scrollLeft = (slider.scrollWidth - slider.clientWidth) / 20;
+
 }
 
-// Call the function to create the slider
-createSlider();
-*/
-// console.log("into js");
-// Function to display book details when hovering
 
-// function showBookDetails(event) {
-//     console.log("enetred 0000");
-//     // Get the hovered slide element
-//     const slide = document.querySelector('.slide');
-//     if (slide) {
-//         console.log("entered");
-//         // Get book details from data attributes
-//         const author = slide.dataset.author;
-//         const ratings = slide.dataset.ratings;
-
-//         console.log("author", author + " " + "ratings " + ratings);
-
-//         // Create and show tooltip with book details
-//         const tooltip = document.createElement('div');
-//         tooltip.classList.add('tooltip');
-//         tooltip.innerHTML = `
-//             <p><strong>Author:</strong> ${author}</p>
-//             <p><strong>Ratings:</strong> ${ratings}</p>
-//         `;
-//         // Position the tooltip relative to the mouse cursor
-//         tooltip.style.top = `${event.clientY}px`;
-//         tooltip.style.left = `${event.clientX}px`;
-//         // Append tooltip to the body
-//         document.body.appendChild(tooltip);
-
-//         // Remove tooltip after a delay
-//         setTimeout(() => {
-//             tooltip.remove();
-//         }, 3000); // Remove after 3 seconds (adjust as needed)
-//     }
-// }
-// // showBookDetails({})
-// // Event listener to trigger showBookDetails on hover
-// document.addEventListener('click', function (event) {
-//     // Check if the clicked element is an image within a slide
-//     const existingDetails = document.querySelector('.book-details');
-//     if (existingDetails) {
-//         existingDetails.remove();
-//     }
-
-//     // Check if the clicked element is an image within a slide
-//     const slideImage = event.target.closest('.slide img');
-//     if (slideImage) {
-//         // If the clicked element is an image within a slide, show book details
-//         showBookDetails(event);
-//     }
-// });
-// script.js
 
 document.addEventListener('DOMContentLoaded', function () {
     const slideImages = document.querySelectorAll('.slide img');
